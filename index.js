@@ -1,9 +1,14 @@
+var _ = require('lodash');
 var path = require('path');
 var tmp = require('tmp');
 var fs = require('fs');
 
-module.exports = {
-    book: function() {
+// Small hack for gitbook < 3.0.0
+// where the function is called multiple times
+var result;
+
+function getAssets() {
+    if (!result) {
         var book = this;
         var tmpobj = tmp.dirSync();
         var files = this.config.get('pluginsConfig.scripts.files', []);
@@ -21,9 +26,15 @@ module.exports = {
             jsfiles.push(filename);
         });
 
-        return {
+        result = {
             assets: tmpobj.name,
             js: jsfiles
-        }
+        };
     }
+
+    return  _.cloneDeep(result);
+}
+
+module.exports = {
+    website: getAssets
 };
