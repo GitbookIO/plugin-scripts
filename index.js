@@ -39,7 +39,7 @@ function getAssets() {
 
 function hash(path) {
     return crypto.createHash('md5')
-        .update('path', 'utf8')
+        .update(path, 'utf8')
         .digest('hex');
 }
 
