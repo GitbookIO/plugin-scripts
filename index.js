@@ -37,9 +37,10 @@ function getAssets() {
     return  _.cloneDeep(result);
 }
 
-function hash(path) {
-    return crypto.createHash('md5')
-        .update(path, 'utf8')
+function hash(str) {
+    return crypto
+        .createHash('md5')
+        .update(str, 'utf8')
         .digest('hex');
 }
 
