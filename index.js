@@ -11,7 +11,7 @@ var result;
 function getAssets() {
     if (!result) {
         var book = this;
-        var tmpobj = tmp.dirSync();
+        var tmpobj = tmp.dirSync({mode: 0755});
         var files = this.config.get('pluginsConfig.scripts.files', []);
         var jsfiles = [];
 
